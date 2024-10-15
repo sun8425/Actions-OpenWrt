@@ -56,6 +56,11 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        git clone https://github.com/sun8425/kwrt-packages.git
+        rm -rf /workdir/openwrt/feeds/packages/net/miniupnpd
+        rm -rf /workdir/openwrt/feeds/luci/applications/luci-app-upnp
+        cp -r /workdir/kwrt-packages/miniupnpd /workdir/openwrt/feeds/packages/net/
+        cp -r /workdir/kwrt-packages/luci-app-upnp /workdir/openwrt/feeds/luci/applications/
 
     - name: Load custom feeds
       run: |
