@@ -65,11 +65,7 @@ jobs:
         cd openwrt
 
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
-           rm -rf /workdir/openwrt/feeds/packages/net/miniupnpd
-           rm -rf /workdir/openwrt/feeds/luci/applications/luci-app-upnp
-           cp -r /workdir/kwrt-packages/miniupnpd /workdir/openwrt/feeds/packages/net/
-           cp -r /workdir/kwrt-packages/luci-app-upnp /workdir/openwrt/feeds/luci/applications/
+      run: cd openwrt && ./scripts/feeds update -a && rm -rf /workdir/openwrt/feeds/packages/net/miniupnpd && rm -rf /workdir/openwrt/feeds/luci/applications/luci-app-upnp && cp -r /workdir/kwrt-packages/miniupnpd /workdir/openwrt/feeds/packages/net/ && cp -r /workdir/kwrt-packages/luci-app-upnp /workdir/openwrt/feeds/luci/applications/
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
