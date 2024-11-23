@@ -10,17 +10,17 @@
 # See /LICENSE for more information.
 #
 
-name: wireless Builder
+name: wireless-lede Builder
 
 on:
   repository_dispatch:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/sun8425/immortalwrt
+  REPO_URL: https://github.com/sun8425/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .wireless
+  CONFIG_FILE: .wireless-lede
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -65,7 +65,7 @@ jobs:
         cd openwrt
 
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a && rm -rf /workdir/openwrt/feeds/packages/net/miniupnpd && rm -rf /workdir/openwrt/feeds/luci/applications/luci-app-upnp && cp -r /workdir/kwrt-packages/miniupnpd /workdir/openwrt/feeds/packages/net/ && cp -r /workdir/kwrt-packages/luci-app-upnp /workdir/openwrt/feeds/luci/applications/
+      run: cd openwrt && ./scripts/feeds update -a && rm -rf /workdir/openwrt/feeds/packages/net/miniupnpd && rm -rf /workdir/openwrt/feeds/luci/applications/luci-app-upnp && cp -r /workdir/kwrt-packages/miniupnpd /workdir/openwrt/feeds/packages/net/ && cp -r /workdir/kwrt-packages/luci-app-upnp /workdir/openwrt/feeds/luci/applications/ && cp -r /workdir/kwrt-packages/luci-app-homeproxy /workdir/openwrt/package/
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
